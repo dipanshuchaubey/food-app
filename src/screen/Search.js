@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, StatusBar, StyleSheet} from 'react-native';
+import {ScrollView, Text, StatusBar, StyleSheet} from 'react-native';
 import SearchBar from '../components/SearchBar';
 import searchResult from '../results/searchResult';
 import ResultList from '../components/ResultList';
@@ -17,7 +17,7 @@ const SearchScreen = () => {
   };
 
   return (
-    <View>
+    <>
       <StatusBar backgroundColor="#FFF" barStyle="dark-content" />
 
       <SearchBar
@@ -28,10 +28,15 @@ const SearchScreen = () => {
 
       {error ? <Text>{error}</Text> : null}
 
-      <ResultList results={resultsPriceFilter('$')} title="Budget Friendly" />
-      <ResultList results={resultsPriceFilter('$$')} title="Mid Range" />
-      <ResultList results={resultsPriceFilter('$$$')} title="Most Expensive" />
-    </View>
+      <ScrollView>
+        <ResultList results={resultsPriceFilter('$')} title="Budget Friendly" />
+        <ResultList results={resultsPriceFilter('$$')} title="Mid Range" />
+        <ResultList
+          results={resultsPriceFilter('$$$')}
+          title="Most Expensive"
+        />
+      </ScrollView>
+    </>
   );
 };
 
